@@ -9,12 +9,12 @@ function Letter(letter) {
     this.letter = letter;
     this.letterValue = false;
 
-    this.lettersInWord = function () {
-        if(this.letterValue === false) {
-            return "_";
-        } else if (this.letter === " ") {
+    this.toString = function () {
+        if (this.letter === " ") {
             this.letterValue = true;
             return " ";
+        } else if(this.letterValue === false) {
+            return "_";
         } else {
             return this.letter;
         };

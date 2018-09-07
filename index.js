@@ -7,11 +7,11 @@ var alpha = "abcdefghijklmnopqrstuvwxyz";
 
 // List of words to choose from
 var authorList = [
-    "Jane Austen", "Stephen King", "JRR Tolkien", "Virginia Woolf", "Maya Angelou", "Truman Capote", "Oscar Wilde", "George RR Martin", "JK Rowling", "Roald Dahl"
+    "jane austen", "stephen king", "jrr tolkien", "virginia woolf", "maya angelou", "truman capote", "oscar wilde", "george rr martin", "jk rowling", "roald dahl"
 ];
 
 // Pick Random index from authorList array
-var author = authorList[Math.floor(Math.random() * authorList.length)];
+var author = authorList[Math.floor(Math.random() * authorList.length) + 1];
 
 // Pass random word through Word constructor
 randomAuthor = new Word(author);
@@ -30,8 +30,8 @@ function startGame() {
     // Generates new word for Word constructor if true
     if (newWord) {
         // Selects random authorList array
-        var randomIndex = Math.floor(Math.random() * authorList.length);
-        var author = authorList[randomIndex];
+        var author = authorList[Math.floor(Math.random() * authorList.length) + 1];
+
         // Passes random word through the Word constructor
         randomAuthor = new Word(author);
         newWord = false;
@@ -63,7 +63,7 @@ function startGame() {
 
                     // Checks if guess is correct
                     randomAuthor.wordArray.forEach(wordCheck);
-                    if (checkAnswer.join('') === guessArray.join('')) {
+                    if (checkAnswer.join("") == guessArray.join("")) {
                         console.log("\nIncorrect!\n");
                         wrongLetters.push(input.userguess);
                         remainingGuesses--;
@@ -105,7 +105,7 @@ function restartGame() {
         {
             type: "list",
             message: "Would you like to:",
-            choices: ["Play Again", "Exit"],
+            choices: ["Play Again?", "Exit?"],
             name: "restart"
         }
     ]).then(function (input) {

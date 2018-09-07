@@ -16,9 +16,11 @@ function Word(word) {
     
     this.correctWord = function() {
         // for loop that grabs a random word from the word choices, separates out the letters and displays the letters as a string object;
+        var secretWord = "";
         for(var i = 0; i < this.wordArray.length; i++) {
-                console.log(this.wordArray[i]);
+                secretWord += this.wordArray[i];
             };
+            console.log(secretWord + "\n");
         };
     
 
