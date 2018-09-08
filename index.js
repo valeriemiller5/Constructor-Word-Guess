@@ -1,6 +1,7 @@
 //The file containing the logic for the course of the game, which depends on Word.js and:
 var Word = require("./word.js");
 var inquirer = require("inquirer");
+var chalk = require("chalk");
 
 // letters entry
 var alpha = "abcdefghijklmnopqrstuvwxyz";
@@ -52,10 +53,10 @@ function startGame() {
             }
         ]).then(function (input) {
                 if (!alpha.includes(input.userguess) || input.userguess.length > 1) {
-                    console.log("\nInvalid entry, please try again.\n");
+                    console.log(chalk.red("\nInvalid entry, please try again.\n"));
                     startGame();
                 } else if (wrongLetters.includes(input.userguess) || correctLetters.includes(input.userguess) || input.userguess === "") {
-                        console.log("\nInvalid entry, please try again.\n");
+                        console.log(chalk.red("\nInvalid entry, please try again.\n"));
                         startGame();
                 } else {
                     var checkAnswer = [];
@@ -64,11 +65,11 @@ function startGame() {
                     // Checks if guess is correct
                     randomAuthor.wordArray.forEach(wordCheck);
                     if (checkAnswer.join("") == guessArray.join("")) {
-                        console.log("\nIncorrect!\n");
+                        console.log(chalk.red("\nIncorrect!\n"));
                         wrongLetters.push(input.userguess);
                         remainingGuesses--;
                     } else {
-                        console.log("\nCorrect!\n");
+                        console.log(chalk.green("\nCorrect!\n"));
                         correctLetters.push(input.userguess);
                     };
 
@@ -81,7 +82,7 @@ function startGame() {
                         // Call function 
                         startGame();
                     } else {
-                        console.log("Game Over, man, Game Over...\n");
+                        console.log(chalk.cyan.bold("Game Over, man, Game Over...\n"));
                         restartGame();
                     };
 
@@ -91,7 +92,7 @@ function startGame() {
                 };
             });
     } else {
-        console.log("YOU WIN!\n");
+        console.log(chalk.magenta.bold("YOU WIN!\n"));
         restartGame();
     };
 
@@ -103,13 +104,12 @@ function startGame() {
 function restartGame() {
     inquirer.prompt([
         {
-            type: "list",
-            message: "Would you like to:",
-            choices: ["Play Again?", "Exit?"],
+            type: "confirm",
+            message: "Would you like to play again?",
             name: "restart"
         }
     ]).then(function (input) {
-        if (input.restart === "Play Again") {
+        if (input.restart === "Y") {
             newWord = true;
             wrongLetters = [];
             correctLetters = [];
