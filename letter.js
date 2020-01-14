@@ -14,7 +14,7 @@ function Letter(letter) {
             this.letterValue = true;
             return " ";
         } else if(this.letterValue === false) {
-            return "_";
+            return "_ ";
         } else {
             return this.letter;
         };

@@ -31,7 +31,7 @@ function startGame() {
     // Generates new word for Word constructor if true
     if (newWord) {
         // Selects random authorList array
-        var author = authorList[Math.floor(Math.random() * authorList.length) + 1];
+        author = authorList[Math.floor(Math.random() * authorList.length) + 1];
 
         // Passes random word through the Word constructor
         randomAuthor = new Word(author);
@@ -39,7 +39,7 @@ function startGame() {
     };
 
 
-    // TestS if a letter guessed is correct
+    // Tests if a letter guessed is correct
     var guessArray = [];
     randomAuthor.wordArray.forEach(completeCheck);
 
@@ -52,11 +52,13 @@ function startGame() {
                 name: "userguess"
             }
         ]).then(function (input) {
+                // Checks if entry is a letter in the alpha string or if nothing was entered 
                 if (!alpha.includes(input.userguess) || input.userguess.length > 1) {
                     console.log(chalk.red("\nInvalid entry, please try again.\n"));
                     startGame();
+                // Checks if the letter has already been guessed, whether correct or incorrect
                 } else if (wrongLetters.includes(input.userguess) || correctLetters.includes(input.userguess) || input.userguess === "") {
-                        console.log(chalk.red("\nInvalid entry, please try again.\n"));
+                        console.log(chalk.red("\nYou already guessed this letter, please try again.\n"));
                         startGame();
                 } else {
                     var checkAnswer = [];
@@ -104,19 +106,20 @@ function startGame() {
 function restartGame() {
     inquirer.prompt([
         {
+            name: "restart",
             type: "confirm",
-            message: "Would you like to play again?",
-            name: "restart"
+            message: "Would you like to play again?", 
+            default: true
         }
     ]).then(function (input) {
-        if (input.restart === "Y") {
-            newWord = true;
+        if (input.restart) {
+            newWord = false;
             wrongLetters = [];
             correctLetters = [];
             remainingGuesses = 10;
-            startGame();
+            return startGame();
         } else {
-            return
+            return false;
         };
     });
 };
