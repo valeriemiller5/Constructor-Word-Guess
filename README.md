@@ -14,8 +14,8 @@ The package.json is included in the Github repository.  In order to run this app
 ### chalk
 `npm install chalk`
 
-## Running the tests
-As the code is run, arguments for errors have been added for testing and informing user when input is not recognized.
+## Demo
+![](./images/constructor_demo.gif)
 
 ## Issues Encountered
 While working on this project, there were some issues with formatting the underscore appearance in the terminal (they currently sit side-by-side instead of having a slight space between each).  The final prompt asking if the player wants to replay the game still has the same response whether the user selectes "y" or "n".
