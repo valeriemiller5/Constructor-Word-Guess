@@ -95,7 +95,7 @@ function startGame() {
             });
     } else {
         console.log(chalk.magenta.bold("YOU WIN!\n"));
-        restartGame();
+        return restartGame();
     };
 
     function completeCheck(key) {
@@ -113,11 +113,11 @@ function restartGame() {
         }
     ]).then(function (input) {
         if (input.restart) {
-            newWord = false;
+            newWord = true;
             wrongLetters = [];
             correctLetters = [];
             remainingGuesses = 10;
-            return startGame();
+            startGame();
         } else {
             return false;
         };
