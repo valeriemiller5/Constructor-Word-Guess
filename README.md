@@ -18,7 +18,7 @@ The package.json is included in the Github repository.  In order to run this app
 As the code is run, arguments for errors have been added for testing and informing user when input is not recognized.
 
 ## Demo Video
-![](./images/constructor_demo.mp4)
+![](./images/constructor_demo.gif)
 
 ## Built With
 * Node.js - language used to build the app
